@@ -5,22 +5,22 @@ section: Features
 permalink: /features/sessions.html
 ---
 
-Sessions are means of establishing conversational context into otherwise stateless HTTP nature. 
-They allow servers to keep a piece of information associated with the client during a sequence of HTTP requests and responses. 
-Different use-cases include authentication and authorization, user tracking, keeping information at client like a shopping cart, 
+Sessions are means of establishing conversational context into otherwise stateless HTTP nature.
+They allow servers to keep a piece of information associated with the client during a sequence of HTTP requests and responses.
+Different use-cases include authentication and authorization, user tracking, keeping information at client like a shopping cart,
 and more. Sessions are typically implemented by employing `Cookies`, but could also be done using headers. Sessions are either
-stateless when entire data object goes back and force between client and server, or as server-side storage when only session ID 
-is traveling back and forth and associated data is retrieved at server. 
+stateless when entire data object goes back and force between client and server, or as server-side storage when only session ID
+is traveling back and forth and associated data is retrieved at server.
 
 ### Usage
 
 ```kotlin
 application.install(Sessions) {
     cookie<MySession>("SESSION")
-} 
+}
 ```
 
-This installs `Sessions` feature and maps cookie with the name `"SESSION"` to `MySession` type in stateless way. 
+This installs `Sessions` feature and maps cookie with the name `"SESSION"` to `MySession` type in stateless way.
 Entire class `MySession` will be serialised into a string and send to client as a cookie. When client makes another request,
 the cookie is deserialized back into `MySession` and is available to server code:
 
@@ -35,7 +35,7 @@ application.routing {
 If session was not set the returned value will be null.
 
 To create or modify current session you just call a `set` function on a `sessions` property with the value of the
-data class: 
+data class:
 
 ```kotlin
 call.sessions.set(MySession(name = "John", value = 12))
@@ -56,18 +56,18 @@ application.install(Sessions) {
         transform(SessionTransportTransformerDigest()) // sign the ID that travels to client
     }
 }
-``` 
+```
 
-For multiple session mapping, both type and name should be unique. 
+For multiple session mapping, both type and name should be unique.
 
 ### Configuration
 
 Since sessions can be implemented by various techniques, there is an extensive configuration facility to set them up:
 
 * `cookie` will install cookie-based transport
-* `header` will install header-based transport 
+* `header` will install header-based transport
 
-Each of these functions will get the name of the cookie or header. 
+Each of these functions will get the name of the cookie or header.
 
 If the function is passed an argument of type `SessionStorage` it will use the storage to save the session, otherwise
 it will serialize data into the cookie/header value.
@@ -83,5 +83,4 @@ For cookies, the receiver is `CookieSessionBuilder` which allows to:
 For headers, the receiver is `HeaderSessionBuilder` that allows `serializer` and `transformer` customization.
 
 For cookies & headers that are server-side with a `SessionStorage`, additional configuration is `identity` function
-that should generate a new ID when the new session is created. 
-
+that should generate a new ID when the new session is created.

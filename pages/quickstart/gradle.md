@@ -40,14 +40,14 @@ dependencies {
 ## Add Ktor dependencies and configure build settings
 
 The Ktor file is located on bintray and it has a dependency on the coroutines library in kotlinx
-so we will need to add the following to the repositories block:     
+so we will need to add the following to the repositories block:
 
 ```groovy
  maven { url  "http://dl.bintray.com/kotlin/ktor" }
  maven { url "https://dl.bintray.com/kotlin/kotlinx" }
 ```
 
-Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) and determine the latest version of ktor.  In this case it is `{{site.ktor_version}}`.  
+Visit [Bintray](https://bintray.com/kotlin/ktor/ktor) and determine the latest version of ktor.  In this case it is `{{site.ktor_version}}`.
 Then we will designate this as an extra property in the `buildscript` block like:
 
 ```groovy

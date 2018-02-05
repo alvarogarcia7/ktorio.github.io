@@ -1,13 +1,13 @@
 ---
 title: CORS
-caption: Enable Cross-Origin Resource Sharing (CORS) 
+caption: Enable Cross-Origin Resource Sharing (CORS)
 section: Features
 permalink: /features/cors.html
 ---
 
 Ktor by default provides an interceptor for implementing proper support for Cross-Origin Resource Sharing (CORS).
 
-> Cross-Origin Resource Sharing (CORS) is a specification that enables truly open access across domain-boundaries. If you serve public content, please consider using CORS to open it up for universal JavaScript / browser access. 
+> Cross-Origin Resource Sharing (CORS) is a specification that enables truly open access across domain-boundaries. If you serve public content, please consider using CORS to open it up for universal JavaScript / browser access.
 *From [enable-cors.org](http://enable-cors.org/)*
 
 ### Basic

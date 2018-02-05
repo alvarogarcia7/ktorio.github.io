@@ -1,6 +1,6 @@
 ---
 title: Drafts
-caption: Unpublished Pages 
+caption: Unpublished Pages
 section: Drafts
 permalink: /drafts/index.html
 ---

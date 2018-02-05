@@ -27,21 +27,20 @@ Order of blocks is determined by the order of phases they are installed into, th
 Phases are defined when pipeline is created, and can be augmented to add more phases using `pipeline.phases`
 
 Pipeline is bound to an `ApplicationCall` that initiated its execution in the first place. You can get it via `call` property.
-This is not architecturally needed to have a call there, but it's much more convenient to have it right there. 
+This is not architecturally needed to have a call there, but it's much more convenient to have it right there.
 If you need pipelines somewhere outside of ktor, you need to remove `call` property from `PipelineContext`
 
 When executing, pipeline context also carries a _subject_, some object that is being "processed". For a pipeline
 without a subject it is Unit, like in `ApplicationCallPipeline`, but in a pipeline for responding it is the actual object
 to be responded. It's accessible with the `subject` property. It can be changed with `proceedWith(newSubject)` – pipeline
-will continue with the new subject and then get back to the caller.  
+will continue with the new subject and then get back to the caller.
 
-Pipelines of the same type can be merged. This is done with `merge` function on a receiving pipeline. 
-All interceptors from the merging pipeline are added to receiving pipeline according to their phases.  
+Pipelines of the same type can be merged. This is done with `merge` function on a receiving pipeline.
+All interceptors from the merging pipeline are added to receiving pipeline according to their phases.
 Pipelines are being merged when there are different points where interceptors can be installed. One example is response
 pipelines that can be intercepted on the application level, on call level or per route; before we execute a response
-pipeline we merge them all.   
+pipeline we merge them all.
 
 
 
 See `PipelineTest` for examples.
-

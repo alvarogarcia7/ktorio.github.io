@@ -2,7 +2,7 @@
 title: Lifecycle
 section: Servers
 permalink: /servers/lifecycle.html
-caption: What Happens in a Server?  
+caption: What Happens in a Server?
 status: todo
 ---
 

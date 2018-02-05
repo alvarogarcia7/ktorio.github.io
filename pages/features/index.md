@@ -1,11 +1,11 @@
 ---
 title: Features
-caption: Extend Application Capabilities 
+caption: Extend Application Capabilities
 section: Features
 permalink: /features/index.html
 ---
 
-A Ktor application typically consists of a series of features. You can think of features as functionality 
+A Ktor application typically consists of a series of features. You can think of features as functionality
 that is injected into the request and response pipeline. Usually an application would have a series of features such as `DefaultHeaders` which add headers to every outgoing
 response, `Routing` which allows us to define routes to handle requests, etc.
 
@@ -19,11 +19,11 @@ A feature is "installed" into the [Application](/application) using the `install
 
 ```kotlin
 fun Application.main() {
-    install(DefaultHeaders) 
+    install(DefaultHeaders)
     install(CallLogging)
-    install(Routing) { 
-        get("/") { 
-            call.respondText("Hello, World!")  
+    install(Routing) {
+        get("/") {
+            call.respondText("Hello, World!")
         }
     }
 }
@@ -57,5 +57,5 @@ Ktor comes with a number of ready-made features that can be installed into your 
 
 ### Custom features
 
-You can develop your own features and reuse them across your Ktor applications. 
+You can develop your own features and reuse them across your Ktor applications.
 Refer to [Advanced Features](/advanced/features) for more information.

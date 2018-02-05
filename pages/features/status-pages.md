@@ -5,7 +5,7 @@ section: Features
 permalink: /features/status-pages.html
 ---
 
-The `StatusPages` feature allows Ktor applications to respond appropriately to any failure state. 
+The `StatusPages` feature allows Ktor applications to respond appropriately to any failure state.
 This feature is installed using the standard application configuration:
 
 ```kotlin
@@ -16,11 +16,11 @@ fun Application.main() {
 
 There are three main configuration options provided to StatusPages:
 
-1. `exceptions` - Configures response based on mapped exception classes 
+1. `exceptions` - Configures response based on mapped exception classes
 2. `status` - Configures response to status code value
 3. `statusFile` - Configures standard file response from classpath
 
-### Exceptions 
+### Exceptions
 
 The exception configuration can provide simple interception patterns for calls that result in a thrown exception. In the most basic case, a 500 HTTP status code can be configured for any exception.
 
@@ -73,7 +73,7 @@ install(StatusPages) {
 ```
 
 
-### Status 
+### Status
 
 The `status` configuration provides a custom actions for status responses from within the application. Below is a basic configuration that provides information about the http status code within the response text.
 
@@ -85,7 +85,7 @@ install(StatusPages) {
 }
 ```
 
-### StatusFile 
+### StatusFile
 
 While the `status` configuration provides customizable actions on the response object, the more common solution is to provide an error HTML page that visitors will see on an error or authorization failure. The `statusFile` configuration provides that type of functionality.
 

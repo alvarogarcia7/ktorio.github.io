@@ -16,11 +16,11 @@ install(Compression)
 
 When configuration block is omitted, the default configuration is used. It includes
  the following encoders:
- 
+
  * gzip
  * deflate
  * identity
- 
+
 If you want to select specific encoders you need to provide a configuration block:
 
 ```kotlin
@@ -29,7 +29,7 @@ install(Compression) {
 }
 ```
 
-Each encoder can be configured with a priority and a number of conditions: 
+Each encoder can be configured with a priority and a number of conditions:
 
 ```kotlin
 install(Compression) {
@@ -37,7 +37,7 @@ install(Compression) {
         priority = 1.0
     }
     deflate {
-        priority = 10.0 
+        priority = 10.0
         minimumSize(1024) // condition
     }
 }
@@ -46,8 +46,8 @@ install(Compression) {
 Encoders are sorted by specified quality in an `Accept-Encoding` header in the HTTP request, and
 then by specified priority. First encoder that satisfies all conditions wins.
 
-In the example above when `Accept-Encoding` doesn't specify quality, `gzip` will be selected for all contents 
-less than 1K in size, and all the rest will be encoded with `deflate` encoder. 
+In the example above when `Accept-Encoding` doesn't specify quality, `gzip` will be selected for all contents
+less than 1K in size, and all the rest will be encoded with `deflate` encoder.
 
 A number of typical conditions are readily available:
 
@@ -67,6 +67,6 @@ gzip {
 
 ### Extensibility
 
-You can provide your own encoder by implementing `CompressionEncoder` interface and providing configuration function. 
-Since content can be provided as a `ReadChannel` or `WriteChannel` it should be able to compress in both ways. 
-See `GzipEncoder` as an example of an encoder. 
+You can provide your own encoder by implementing `CompressionEncoder` interface and providing configuration function.
+Since content can be provided as a `ReadChannel` or `WriteChannel` it should be able to compress in both ways.
+See `GzipEncoder` as an example of an encoder.

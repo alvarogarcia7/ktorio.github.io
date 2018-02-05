@@ -1,6 +1,6 @@
 ---
 title: Configuration
-caption: Configuring Server   
+caption: Configuring Server
 section: Servers
 permalink: /servers/configuration.html
 status: todo

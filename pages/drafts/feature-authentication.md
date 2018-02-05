@@ -7,14 +7,14 @@ permalink: /drafts/features/authentication.html
 
 Authentication feature provides support for various authentication methods used for web applications. It has pluggable
 architecture and allows building your own authentication procedures. Out of the box, it supports Basic, Digest, Form and
-OAuth1a and OAuth2 methods. 
+OAuth1a and OAuth2 methods.
 
 ### Usage
 
 ```kotlin
 fun Application.main() {
   install(Authentication) {
-     // authentication providers configuration
+    // authentication providers configuration
   }
 }
 ```
@@ -36,7 +36,7 @@ fun Application.main() {
   routing {
     ...
     route("members") {
-        authentication { 
+        authentication {
             ...
         }
     }
@@ -44,9 +44,9 @@ fun Application.main() {
 }
 ```
 
-If authentication succeeds, `call.principal<TPrincipal>()` further in call handling will return non-null value 
+If authentication succeeds, `call.principal<TPrincipal>()` further in call handling will return non-null value
 for the currently logged principal.
-`TPrincipal` is a type implementing `Principal`. 
+`TPrincipal` is a type implementing `Principal`.
 
 For information about developing custom authentication procedures see [Advanced Authentication](/advanced/authentication)
 
@@ -60,14 +60,14 @@ authentication {
 }
 ```
 
-`basicAuthentication` checks `Authorization` header for `Basic` schema and loads specified `credentials`. 
-It then passes `UserPasswordCredential` instance into provided lambda for validation. 
+`basicAuthentication` checks `Authorization` header for `Basic` schema and loads specified `credentials`.
+It then passes `UserPasswordCredential` instance into provided lambda for validation.
 
-If instance of `Principal` was returned, normally a `UserIdPrincipal`, it is assumed that a log in was successful. 
+If instance of `Principal` was returned, normally a `UserIdPrincipal`, it is assumed that a log in was successful.
 
-If null is returned, or if there were no `Authorization` header, or it was broken, 
+If null is returned, or if there were no `Authorization` header, or it was broken,
 then `401 Unauthorized` response is sent back. Normally browser will open a username/password window and resend a request
-with credentials provided. 
+with credentials provided.
 
 ### Digest Authentication
 
@@ -80,7 +80,7 @@ authentication {
 ```
 
 `digestAuthentication` checks `Authorization` header for `Digest` schema and verifies it. If verification passes,
-it assumes authentication to be successful and assign `UserIdPrincipal` as current principal. 
+it assumes authentication to be successful and assign `UserIdPrincipal` as current principal.
 
 > TODO: Explain in more details how Digest works, I have no idea.
 
@@ -96,7 +96,7 @@ authentication {
 
 `formAuthentication` retrieves userid-parameter and password-parameter from values sent by a form POST, and validates
 them using provided validation function. If validation function returned a non-null `Prinicpal`, it assumes successful
-authentication and given principal is stored as currently logged in. 
+authentication and given principal is stored as currently logged in.
 
 If validation fails, or post parameters are missing, authentication fails and specified challenge is executed:
 
@@ -107,6 +107,3 @@ If validation fails, or post parameters are missing, authentication fails and sp
 ### OAuth Authentication
 
 > TODO
-
-
- 

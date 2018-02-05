@@ -18,13 +18,13 @@ Here we will guide you throw creating docker image and publishing an application
 
 In this tutorial we will use Gradle [shadow plugin](https://github.com/johnrengelman/shadow). It will package
 compilation output and all required dependencies into a single JAR file, and append a manifest to tell Java which
-function to run first. 
+function to run first.
 
 First, you need to apply it in your `build.gradle` file:
 
 ```groovy
 apply plugin: "com.github.johnrengelman.shadow"
-``` 
+```
 
 Then, specify main class so it knows what to run when you will tell java inside docker image to run your jar:
 
@@ -46,8 +46,8 @@ shadowJar {
 }
 ```
 
-Now you can run `./gradlew build` to build and package your application. You should get `my-application.jar` 
-in `build/libs` folder.  
+Now you can run `./gradlew build` to build and package your application. You should get `my-application.jar`
+in `build/libs` folder.
 
 For more information about configuring this plugin see [documention for the plugin](http://imperceptiblethoughts.com/shadow/)
 
@@ -71,8 +71,8 @@ Let's see what is what:
 FROM openjdk:8-jre-alpine
 ```
 
-This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/). You can use other images 
-from [OpenJDK registry](https://hub.docker.com/_/openjdk/). Alpine Linux benefit is that the image is pretty small. 
+This line tells Docker to base an image on a pre-built image with [Alpine Linux](https://alpinelinux.org/). You can use other images
+from [OpenJDK registry](https://hub.docker.com/_/openjdk/). Alpine Linux benefit is that the image is pretty small.
 We also select JRE-only image since we don't need to build on image, only run.
 
 ```text
@@ -86,7 +86,7 @@ These lines copy your packaged application into Docker image and sets working di
 CMD ["java", "-server", "-Xms4g", "-Xmx4g", "-XX:+UseG1GC", "-XX:MaxGCPauseMillis=100", "-XX:+UseStringDeduplication", "-jar", "my-application.jar"]
 ```
 
-The last line instructs Docker to run `java` with G1 GC, 4G memory and your packaged application. 
+The last line instructs Docker to run `java` with G1 GC, 4G memory and your packaged application.
 
 ### Building and running an image
 
@@ -109,19 +109,19 @@ docker run -it -p 8080:8080 --rm my-application
 ```
 
 With this command we start docker in a foreground mode. It will wait for server to exit, or will respond to `Ctrl+C`
-to stop. `-it` is telling docker to allocate a terminal (tty) for logs output and responding to interrupt key sequence. 
+to stop. `-it` is telling docker to allocate a terminal (tty) for logs output and responding to interrupt key sequence.
 
 Since our server is running in a container now, we should tell Docker to expose a port so we can actually access the
 server. Parameter `-p 8080:8080` tells docker to publish port 8080 from inside a container as a port 8080 on a local
 machine. Thus, when you tell your browser to visit `localhost:8080` it will first reach to Docker and it will bridge
-it into internal port `8080` for your application. 
+it into internal port `8080` for your application.
 
 By default a container’s file system persists even after the container exits, so we supply `--rm` option to start clean.
 
-For more information about running a docker image please consult [docker run](https://docs.docker.com/engine/reference/run) 
-documentation. 
+For more information about running a docker image please consult [docker run](https://docs.docker.com/engine/reference/run)
+documentation.
 
-### Pushing docker image 
+### Pushing docker image
 
 After your application has been successfully running locally it may be time to deploy it.
 
@@ -129,10 +129,10 @@ After your application has been successfully running locally it may be time to d
 docker tag my-application hub.example.com/docker/registry/tag
 docker push hub.example.com/docker/registry/tag
 ```
- 
-These commands will tag your application for a registry and push an image. 
+
+These commands will tag your application for a registry and push an image.
 Of course, you need to replace `hub.example.com/docker/registry/tag` with an actual URL for your registry.
 
-We won't go into details here since your configuration might require authentication, specific configuration options 
-and even special tools. Please consult your organization or cloud platform, or 
+We won't go into details here since your configuration might require authentication, specific configuration options
+and even special tools. Please consult your organization or cloud platform, or
 check [docker push](https://docs.docker.com/engine/reference/commandline/push/) documentation.

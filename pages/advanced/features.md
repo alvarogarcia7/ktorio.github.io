@@ -1,41 +1,41 @@
 ---
 title: Features
-caption: Creating Custom Feature  
+caption: Creating Custom Feature
 section: Advanced
 permalink: /advanced/features.html
 ---
 
-You can develop your own features and reuse them across your Ktor applications, or share with the community. Typical 
+You can develop your own features and reuse them across your Ktor applications, or share with the community. Typical
 feature has the following structure:
 
 ```kotlin
 class CustomFeature(configuration: Configuration) {
     val prop = configuration.prop // get snapshot of config into immutable property
-    
+
     class Configuration {
-       var prop = "value" // mutable property
+        var prop = "value" // mutable property
     }
 
     // implement ApplicationFeature in a companion object
     companion object Feature : ApplicationFeature<ApplicationCallPipeline, CustomFeature.Configuration, CustomFeature> {
-       // create unique key for the feature
-       override val key = AttributeKey<CustomFeature>("CustomFeature")
-       
-       // implement installation script
-       override fun install(pipeline: ApplicationCallPipeline, configure: Configuration.() -> Unit): CustomFeature {
-           
-           // run configuration script
-           val configuration = CustomFeature.Configuration().apply(configure)
-           
-           // create a feature 
-           val feature = CustomFeature(configuration)
-           
-           // intercept a pipeline 
-           pipeline.intercept(…) { 
+        // create unique key for the feature
+        override val key = AttributeKey<CustomFeature>("CustomFeature")
+
+        // implement installation script
+        override fun install(pipeline: ApplicationCallPipeline, configure: Configuration.() -> Unit): CustomFeature {
+
+            // run configuration script
+            val configuration = CustomFeature.Configuration().apply(configure)
+
+            // create a feature
+            val feature = CustomFeature(configuration)
+
+            // intercept a pipeline
+            pipeline.intercept(…) {
                 // call a feature
-           }
-           return feature
-       }
+            }
+            return feature
+        }
     }
 }
 ```
@@ -43,10 +43,10 @@ class CustomFeature(configuration: Configuration) {
 `CustomFeature` is a feature instance class, which should be immutable to avoid unintended side-effects in a highly
 concurrent environment. Feature implementation should be thread-safe as it will be called from multiple threads.
 
-`Configuration` instance is handed to the user installation script and allows for feature configuration. 
+`Configuration` instance is handed to the user installation script and allows for feature configuration.
 
 `Feature` companion object conforms to Ktor API and wires things together.
- 
+
 Feature can be installed with the standard `install` function:
 
 ```kotlin

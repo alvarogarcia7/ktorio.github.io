@@ -10,9 +10,9 @@ Ktor applications can be built using common build systems such as [Maven](https:
 
 ### Including the right dependencies
 
-Ktor is split up into several groups of modules, allowing us to include only the functionality that we need. 
-For a list of these modules, please see [Artifacts](artifacts). 
-In our case we only need to include `ktor-server-netty`.  
+Ktor is split up into several groups of modules, allowing us to include only the functionality that we need.
+For a list of these modules, please see [Artifacts](artifacts).
+In our case we only need to include `ktor-server-netty`.
 
 These dependencies are hosted on [Bintray](https://bintray.com/kotlin/ktor) and as such the right
 repositories need to be added to our build script.
@@ -31,7 +31,7 @@ We begin by creating an `embeddedServer`, passing in the engine factory as the f
 The code below defines a single route that responds to the `GET` verb on the url `/` with the text `Hello, world!`
 
 Once we've defined the routes, we start the server by calling `server.start`, passing as argument a boolean to indicate whether we want the main thread
-of the application to block.  
+of the application to block.
 
 ```kotlin
 import io.ktor.application.*
@@ -55,14 +55,14 @@ fun main(args: Array<String>) {
 
 ### Running the Application
 
-Given that the entry point to our application is the standard Kotlin `main` function, 
+Given that the entry point to our application is the standard Kotlin `main` function,
 we can simply run it and have our server start, listening on the designated port.
 
-When you point your browser to `localhost:8080` you should see `Hello, world!` text. 
+When you point your browser to `localhost:8080` you should see `Hello, world!` text.
 
 ### Next Steps
 
-This was the simplest example of getting a self-hosted Ktor application up and running. 
+This was the simplest example of getting a self-hosted Ktor application up and running.
 A recommended tour to continue learning Ktor on the server would be:
 
 * [What is an Application?](/servers/application)

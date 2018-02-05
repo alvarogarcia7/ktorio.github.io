@@ -1,22 +1,22 @@
 ---
 title: Artifacts
 permalink: /artifacts.html
-summary:  
+summary: ""
 ---
 
-Ktor is divided into modules to allow fine-grained inclusion of dependencies based on the functionality required. 
+Ktor is divided into modules to allow fine-grained inclusion of dependencies based on the functionality required.
 The typical Ktor application would require `ktor-server-core` and a corresponding engine depending on whether it's self-hosted
- or using an Application Server. 
+ or using an Application Server.
 
 All artifacts in Ktor belong to `io.ktor` group and hosted on [Bintray](https://bintray.com/kotlin/ktor)
 
 [![Download](https://api.bintray.com/packages/kotlin/ktor/ktor/images/download.svg?version={{site.ktor_version}})](https://bintray.com/kotlin/ktor/ktor/{{site.ktor_version}})
-    
+
 Ktor is split into several groups of modules:
 
-* `ktor-server` contains modules that support running Ktor Application with different engines: Netty, Jetty, Tomcat, and 
+* `ktor-server` contains modules that support running Ktor Application with different engines: Netty, Jetty, Tomcat, and
 generic servlet. It also contains TestEngine for setting up application tests without starting real server.
-  * `ktor-server-core` is a core package where most of the application API and implementation is located. 
+  * `ktor-server-core` is a core package where most of the application API and implementation is located.
   * `ktor-server-jetty` support a deployed or embedded Jetty instance
   * `ktor-server-netty` supports Netty in an embedded mode
   * `ktor-server-tomcat` supports Tomcat servers
@@ -30,10 +30,9 @@ generic servlet. It also contains TestEngine for setting up application tests wi
   * `ktor-locations` contains experimental support for typed locations
   * `ktor-server-sessions` adds ability to use stateful sessions stored on a server
   * `ktor-websockets` provides support for Websockets
-  
+
 
 See instructions for setting up a project with
 
 * [Maven](getting-started-maven)
 * [Gradle](getting-started-gradle)
-

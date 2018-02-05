@@ -1,5 +1,5 @@
 ---
-title: IntelliJ IDEA 
+title: IntelliJ IDEA
 caption: Setting up Project in IntelliJ IDEA
 section: Quick Start
 permalink: /quickstart/intellij-idea.html
@@ -18,17 +18,17 @@ Check this in IDEA at:  File -> Settings -> Plugins
 
 1.  File -> New -> Project
 2.  Select Gradle and under Additional Libraries and Frameworks, check Java and Kotlin (Java).  Confirm that Project SDK is completed and click Next.
-3.  Enter a GroupId: Example  
-and ArtifactId: Example  
+3.  Enter a GroupId: Example
+and ArtifactId: Example
 and click Next
 4.  Check the checkboxes for "Use auto-import", "Create directories for empty content roots automatically", and "Create separate module per source set".  Confirm the Use default gradle wrapper radio button is selected and that Gradle JVM is populated and click Next.
-5.  Complete Project name: Example  
-and Project location: a/path/on/your/filesystem   
+5.  Complete Project name: Example
+and Project location: a/path/on/your/filesystem
 and click Finish
 6.  Wait a few seconds for Gradle to run and you should see a project structure like the following (with a few other files and directories):
 
 ```
-Example 
+Example
   src
     main
         java
@@ -75,7 +75,7 @@ fun main(args: Array<String>) {
 }
 ```
 
-Now you can Run 'blog.BlogAppKt'  
+Now you can Run 'blog.BlogAppKt'
 
 This will start the Netty web server.
 In your browser enter the url:  localhost:8080
@@ -83,9 +83,9 @@ And you should see your example blog plage.
 
 ### Improve the app with the Application object
 
-The setup above has a lot of nested blocks and is not the best for starting to 
-add functionality to your app.  We can improve it by using the Application object 
-and referring to that from an embeddedServer call in the main function.  
+The setup above has a lot of nested blocks and is not the best for starting to
+add functionality to your app.  We can improve it by using the Application object
+and referring to that from an embeddedServer call in the main function.
 
 Change your code in BlogApp.kt to the following to try this:
 
@@ -131,7 +131,7 @@ ktor {
 }
 ```
 
-Then we delete the main function from BlogApp.kt and change fun Application.module() to fun Application.main().  However, if we run the application now it will fail with an error message like "Top-level function 'main' not found in package blog."  Our Application.main() function is now a function extension and does not qualify as a top-level main function.   
+Then we delete the main function from BlogApp.kt and change fun Application.module() to fun Application.main().  However, if we run the application now it will fail with an error message like "Top-level function 'main' not found in package blog."  Our Application.main() function is now a function extension and does not qualify as a top-level main function.
 
 This requires us to indicate a new main class as IDEA will no longer be able to find it automatically.  In build.gradle we add:
 

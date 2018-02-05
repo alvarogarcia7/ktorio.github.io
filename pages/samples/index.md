@@ -6,7 +6,7 @@ caption: Sample Projects
 ---
 
 Ktor comes with a number of examples right in the repository, covering many features and use cases.
-If you check out ktor source code, you can browse various samples, navigate to the implementations or even 
+If you check out ktor source code, you can browse various samples, navigate to the implementations or even
 step through with debugger to see how it all works.
 
 {% include category-list.html %}
